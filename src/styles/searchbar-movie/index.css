@@ -1,0 +1,37 @@
+.container-search-bar {
+}
+.container-search-bar > form {
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+align-items: center;
+  width: 60%;
+}
+.container-search-bar > form > input {
+  background-color: #282727;
+  border: #282727;
+  height: 2rem;
+}
+.container-search-bar > form > input:hover,
+.container-search-bar > form > input:focus{
+  background-color: #3d3d3d;
+  box-shadow: none;
+  color:white;
+}
+.container-search-bar > form > button {
+    margin: 0 15px;
+    color: #ebd800;
+    border: 1px solid #ebd800;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+  }
+  .container-search-bar > form > button:hover {
+    background-color: #ebd800;
+    color: white;
+  }
+  @media (max-width: 750px) {
+    .container-search-bar > form {
+      width: 70%;
+    }
+}

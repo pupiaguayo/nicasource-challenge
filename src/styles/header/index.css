@@ -1,0 +1,8 @@
+.title-header-container{
+    display: flex;
+}
+.title-header-container > img{
+    margin: 0 auto;
+    width: 40%;
+    height: auto;
+}
