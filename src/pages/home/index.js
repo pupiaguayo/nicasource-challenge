@@ -5,13 +5,12 @@ import { CharactersFilter } from "../../components/characters-filter";
 import { CharacterList } from "../../components/characters-list";
 export const Home = () => {
   const [idFilm, setIdFilm] = useState(0);
-  
+
   const getData = (data) => {
     setIdFilm(data);
   };
   return (
     <>
-      <Header />
       <SearchBar />
       <CharactersFilter data={getData} />
       <CharacterList idFilm={idFilm} />
