@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import useFetch from "../../api/use-fetch";
 import "../../styles/characters-filter/index.css";
-export const CharactersFilter = () => {
+export const CharactersFilter = (props) => {
   const [film, setFilm] = useState();
   const [apiUrl, setApiUrl] = useState("https://swapi.dev/api/films");
   const [data] = useFetch(apiUrl);
+  useEffect(() => {
+    props.data(film);
+  });
   return (
     <div className="dropdown">
       <select
@@ -12,6 +15,7 @@ export const CharactersFilter = () => {
         value={film}
         onChange={(e) => setFilm(e.target.value)}
       >
+            <option hidden selected>Filter characters per movie or See All</option>
         <option value="0">See All</option>
         {data &&
           data.results.map((film, episode_id) => {

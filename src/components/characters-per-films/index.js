@@ -1,18 +1,31 @@
 import React, { useEffect, useState } from "react";
 import useFetch from "../../api/use-fetch";
-export const CharactersPerFilms = () => {
-    const [apiUrl, setApiUrl] = useState("https://swapi.dev/api/films/1");
-    const [data, loading] = useFetch(apiUrl);
-  const [film, setFilm] = useState();
+export const CharactersPerFilms = (idFilm) => {
+
+  const id = idFilm.idFilm;
+  const [apiUrl, setApiUrl] = useState(`https://swapi.dev/api/films/${id}`);
+  const [data, loading] = useFetch(apiUrl);
+  const [arrayUrls, setArrayUrls] = useState();
+  
+  useEffect(() => {
+    const fetchAll = async (urls) => {
+      const res = await Promise.all(urls?.map((u) => fetch(u)));
+      const jsons = await Promise.all(res.map((r) => r.json()));
+      setArrayUrls(jsons);
+    };
+    setApiUrl(`https://swapi.dev/api/films/${id}`);
+    fetchAll(data?.characters);
+  }, [data?.characters, id]);
+
   if (loading) return <h1>Loading...</h1>;
   return (
     <>
-      <div className="container">
+      <div className="characters-list-container">
         <ul>
-          {/* {data &&
-            data.characters.map((character, index) => {
-              setCharactersUrls(character);
-            })} */}
+          {arrayUrls &&
+            arrayUrls?.map((character, index) => {
+              return <li key={index}>{character.name}</li>;
+            })}
         </ul>
       </div>
     </>
