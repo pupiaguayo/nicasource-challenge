@@ -60,4 +60,4 @@ Start the server
 
   
 ## Screenshots
-![image](<img width="1440" alt="image" src="https://user-images.githubusercontent.com/67393038/194935724-efe1ca6d-eb56-4311-bcd4-783185ad36ec.png">)
+![image](<img width="1440" alt="image" src="https://i.ibb.co/YWCJLmt/Screen-Shot-2022-10-10-at-16-06-51.png">)
