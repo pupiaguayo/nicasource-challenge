@@ -12,10 +12,13 @@ export const CharactersFilter = (props) => {
     <div className="dropdown">
       <select
         className="dropdown-select"
+        defaultValue={"DEFAULT"}
         value={film}
         onChange={(e) => setFilm(e.target.value)}
       >
-            <option hidden selected>Filter characters per movie or See All</option>
+        <option value="DEFAULT" disabled>
+          Filter characters per movie or See All
+        </option>
         <option value="0">See All</option>
         {data &&
           data.results.map((film, episode_id) => {

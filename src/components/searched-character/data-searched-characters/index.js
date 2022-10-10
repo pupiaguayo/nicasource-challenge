@@ -8,20 +8,36 @@ export const DataSearchedCharacters = () => {
   const [apiUrl, setApiUrl] = useState(
     `https://swapi.dev/api/people?search=${characterName}`
   );
-  const [data, loading, error] = useFetch(apiUrl);
+  const [dataHomeworld, setDataHomeworld] = useState("");
+  const [dataMovies, setDataMovies] = useState([]);
+  const [data] = useFetch(apiUrl);
 
+  const dataPlanet = async (x) => {
+    const response = await fetch(x);
+    const datxa = await response.json();
+    setDataHomeworld(datxa?.name);
+  };
   useEffect(() => {
     setApiUrl(`https://swapi.dev/api/people?search=${characterName}`);
-  }, [characterName]);
+    const dataFilms = async (x) => {
+      const res = await Promise.all(x?.map((u) => fetch(u)));
+      const jsons = await Promise.all(res.map((r) => r.json()));
+      setDataMovies(jsons);
+    };
+    data?.results.map((character, index) => {
+      return dataFilms(character?.films);
+    });
+  }, [characterName, data?.results]);
   return (
     <div className="data-character-container">
       {data &&
         data?.results.map((character, index) => {
+          dataPlanet(character?.homeworld);
           return (
-            <>
+            <div key={index}>
               <p>
                 <a
-                  class="btn btn-primary"
+                  className="btn btn-primary"
                   data-bs-toggle="collapse"
                   href={"#colla" + index}
                   role="button"
@@ -31,20 +47,32 @@ export const DataSearchedCharacters = () => {
                   {character.name} &#8595;
                 </a>
               </p>
-              <div class="collapse" id={"colla" + index}>
+              <div className="collapse more-info" id={"colla" + index}>
                 <div>
-                  <p>{character.name}</p>
-                    <p>{character.homeworld}</p>
-                  <p>{character.birth_year}</p>
-                  <p>{character.films}</p>
                   <p>
+                    <span className="title">Name:</span> {character.name}
+                  </p>
+                  <p>
+                    <span className="title">Planet:</span> {dataHomeworld}
+                  </p>
+                  <p>
+                    <span className="title">Birth Year:</span> {character.birth_year}
+                  </p>
+                  <p className="movies">
+                    <span className="title"> Movies where appears:</span>{" "}
+                    {dataMovies?.map((m, index) => {
+                      return <span key={index} className="title-movie">{m.title}</span>;
+                    })}
+                  </p>
+                  <p>
+                    <span className="title">Last edited info:</span>{" "}
                     <Moment format="YYYY-MM-DD HH:mm">
                       {character.edited}
                     </Moment>
                   </p>
                 </div>
               </div>
-            </>
+            </div>
           );
         })}
     </div>

@@ -16,7 +16,7 @@ export const CharacterList = (idFilm) => {
   const pageCount = Math.ceil(82 / page);
   if (loading) return <LoadingSpinner />;
   if (error)
-    <div class="alert alert-danger" role="alert">
+    <div className="alert alert-danger" role="alert">
       {error}
     </div>;
   return id > 0 ? (
