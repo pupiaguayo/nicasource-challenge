@@ -3,9 +3,10 @@ import "../../styles/characters-list/index.css";
 import useFetch from "../../api/use-fetch";
 import ReactPaginate from "react-paginate";
 import { CharactersPerFilms } from "../characters-per-films";
+import { LoadingSpinner } from "../loading-spinner";
 export const CharacterList = (idFilm) => {
   const [apiUrl, setApiUrl] = useState("https://swapi.dev/api/people?page=1");
-  const [data, loading] = useFetch(apiUrl);
+  const [data, loading, error] = useFetch(apiUrl);
   const id = idFilm.idFilm;
   // Function React Paginate
   const page = 10;
@@ -13,8 +14,11 @@ export const CharacterList = (idFilm) => {
     setApiUrl(`https://swapi.dev/api/people?page=${selectedPage + 1}`);
   };
   const pageCount = Math.ceil(82 / page);
-  if (loading) return <h1>Loading...</h1>;
-
+  if (loading) return <LoadingSpinner />;
+  if (error)
+    <div class="alert alert-danger" role="alert">
+      {error}
+    </div>;
   return id > 0 ? (
     <>
       <CharactersPerFilms idFilm={id} />

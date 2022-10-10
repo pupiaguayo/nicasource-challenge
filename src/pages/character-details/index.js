@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import React from "react";
 import { SearchBar } from "../../components/searchbar-movie";
-import useFetch from "../../api/use-fetch";
+import { SearchedCharacter } from "../../components/searched-character";
 export const CharacterDetails = () => {
-  let { characterName } = useParams();
-  const [apiUrl, setApiUrl] = useState(
-    `https://swapi.dev/api/people?search=${characterName}`
+  return (
+    <>
+      {" "}
+      <SearchBar />
+      <SearchedCharacter />
+    </>
   );
-  const [data] = useFetch(apiUrl);
-  return <SearchBar />;
 };

@@ -12,9 +12,9 @@ export const SearchBar = () => {
   return (
     <div className="container-search-bar">
       {" "}
-      <form class="form-inline" onSubmit={handleSubmit}>
+      <form className="form-inline" onSubmit={handleSubmit}>
         <input
-          class="form-control mr-sm-2"
+          className="form-control mr-sm-2"
           id="first_name"
           name="first_name"
           type="text"
@@ -22,7 +22,7 @@ export const SearchBar = () => {
           value={characterName}
           placeholder="Search character per name"
         />
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+        <button className="btn btn-outline-success my-2 my-sm-0" type="submit">
           Search
         </button>
       </form>
