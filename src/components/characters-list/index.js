@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../../styles/characters-list/index.css";
 import useFetch from "../../api/use-fetch";
 import ReactPaginate from "react-paginate";

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Header } from "../../components/header";
 import { SearchBar } from "../../components/searchbar-movie";
 import { CharactersFilter } from "../../components/characters-filter";
 import { CharacterList } from "../../components/characters-list";

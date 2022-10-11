@@ -8,7 +8,7 @@ export const SearchedCharacter = () => {
   const [apiUrl, setApiUrl] = useState(
     `https://swapi.dev/api/people?search=${characterName}`
   );
-  const [data, loading, error] = useFetch(apiUrl);
+  const [data] = useFetch(apiUrl);
 
   useEffect(() => {
     setApiUrl(`https://swapi.dev/api/people?search=${characterName}`);
